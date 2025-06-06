@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lowe's Header - Improved</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: #0047ab;
+            color: white;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            transition: color 0.2s;
+        }
+
+        .top-bar a:hover {
+            color: #a8c7f7;
+        }
+
+        /* Main Header */
+        .header-main {
+            background-color: #f5f7fa;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0047ab;
+            letter-spacing: 1px;
+        }
+
+        .store-finder {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+
+        .store-finder select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 40px 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background: url('https://img.icons8.com/ios-filled/20/000000/search--v1.png') no-repeat 98% center;
+            background-size: 20px;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #0066c0;
+            box-shadow: 0 0 5px rgba(0, 102, 192, 0.2);
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-actions a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .user-actions a img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .user-actions a:hover {
+            color: #0066c0;
+        }
+
+        /* Navigation */
+        .nav {
+            background-color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            margin-right: 20px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav a:hover {
+            color: #0066c0;
+        }
+
+        .nav a.new {
+            color: #a10000;
+        }
+
+        /* Recommended Search */
+        .recommended {
+            padding: 20px;
+            background-color: white;
+        }
+
+        .recommended h3 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .recommended h3 a {
+            color: #0066c0;
+            text-decoration: none;
+            margin-left: 5px;
+            font-weight: 400;
+        }
+
+        .recommended h3 a:hover {
+            text-decoration: underline;
+        }
+
+        .search-tags {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+        }
+
+        .search-tags button {
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            background-color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            white-space: nowrap;
+        }
+
+        .search-tags button:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Banner Section */
+        .banner-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Left Banner */
+        .left-banner {
+            background-color: #0047ab;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+            flex: 1;
+        }
+
+        .left-banner h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .left-banner .final-day {
+            background-color: white;
+            color: #0047ab;
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .left-banner .discount {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .left-banner p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .left-banner button {
+            background-color: white;
+            color: #0047ab;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .left-banner button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .left-banner::before {
+            content: '★';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+        }
+
+        .left-banner::after {
+            content: '★';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 20px;
+        }
+
+        /* Right Slider */
+        .right-slider {
+            flex: 2;
+            position: relative;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 80%;
+            object-fit: cover;
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .swiper-button-next:hover, .swiper-button-prev:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .swiper-pagination-bullet {
+            background-color: #ccc;
+            width: 10px;
+            height: 10px;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: #666;
+        }
+
+        .swiper-slide {
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* Footer Section */
+        .footer-section {
+            display: flex;
+            gap: 20px;
+        }
+
+        .impact {
+            background-color: #0047ab;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            flex: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .impact h2 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .impact p {
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .impact a {
+            color: white;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .impact a:hover {
+            text-decoration: underline;
+        }
+
+        .satisfaction {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .satisfaction p {
+            font-size: 14px;
+            color: #0066c0;
+            margin-right: 20px;
+        }
+
+        .satisfaction img {
+            width: 60px;
+            height: auto;
+        }
+
+        .satisfaction a {
+            color: #0066c0;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .satisfaction a:hover {
+            text-decoration: underline;
+        }
+
+        /* Image Gallery Section */
+        .header-image {
+            width: 100%;
+            height: auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .image-container {
+            display: grid;
+            justify-content: center;
+            background-color: navy;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-image:hover {
+            transform: scale(1.03);
+        }
+
+        /* Exclusive Member Section */
+        .member-section {
+            width: 100%;
+            background-color: #1a3c5e;
+            color: white;
+            min-height: 200px;
+            position: relative;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+
+        .member-section h2 {
+            font-size: 1.5em;
+            text-transform: uppercase;
+        }
+
+        .timer-container {
+            text-align: right;
+        }
+
+        .timer-labels {
+            font-size: 0.8em;
+            margin-bottom: 5px;
+        }
+
+        .timer {
+            font-size: 1.2em;
+        }
+
+        .section-image {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px auto 0;
+        }
+
+        /* Left/Right Panel Section */
+        .panel-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            gap: 20px;
+        }
+
+        .left-panel {
+            width: 30%;
+            background-color: #0047bb;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-panel .tabs {
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 1px solid #fff;
+            margin-bottom: 20px;
+        }
+
+        .left-panel .tabs span {
+            padding: 10px;
+            cursor: pointer;
+            color: #fff;
+            opacity: 0.7;
+        }
+
+        .left-panel .tabs span.active {
+            opacity: 1;
+            border-bottom: 2px solid #fff;
+        }
+
+        .left-panel .logo {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .left-panel .logo img {
+            max-width: 150px;
+        }
+
+        .left-panel h2 {
+            text-align: center;
+            font-size: 28px;
+            margin: 20px 0;
+        }
+
+        .left-panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .left-panel ul li {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            font-size: 16px;
+        }
+
+        .left-panel ul li::before {
+            content: "✔";
+            margin-right: 10px;
+            color: #ff6200;
+            font-size: 20px;
+        }
+
+        .left-panel .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #fff;
+            color: #0047bb;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .right-panel {
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h3 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .section h3 a {
+            color: #0047bb;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .product-grid {
+            display: flex;
+            gap: 20px;
+        }
+
+        .product-card {
+            width: 33%;
+            text-align: center;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .product-card p {
+            font-size: 14px;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .product-card .stars {
+            color: #f5c518;
+            margin: 5px 0;
+        }
+
+        .product-card .reviews {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Card Section */
+        .card-section .header {
+            background-color: #0051A8;
+            color: white;
+            display: flex;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 10px 0;
+        }
+
+        .card-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .card h2 {
+            font-size: 20px;
+            margin: 0 0 10px;
+        }
+
+        .card .view-all {
+            color: #0051A8;
+            text-decoration: none;
+            font-weight: bold;
+            float: right;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .image-grid img, .promo-image img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .image-grid div {
+            text-align: center;
+        }
+
+        .image-grid p {
+            margin: 5px 0 0;
+            font-weight: bold;
+        }
+
+        .image-grid a, .promo a {
+            color: #0051A8;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .promo {
+            text-align: center;
+        }
+
+        .promo-image {
+            margin: 0 auto;
+            max-width: 300px;
+        }
+
+        .promo p {
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f5f7fa;
+            padding: 40px 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .footer-column h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #0066c0;
+            font-size: 13px;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.2s;
+        }
+
+        .footer-column a:hover {
+            color: #0047ab;
+            text-decoration: underline;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icons a img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 20px;
+        }
+
+        .footer-bottom p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .header-main {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .search-bar {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .user-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                text-align: center;
+                gap: 5px;
+            }
+
+            .banner-section, .footer-section {
+                flex-direction: column;
+            }
+
+            .left-banner {
+                height: auto;
+            }
+
+            .swiper-button-next, .swiper-button-prev {
+                display: none;
+            }
+
+            .right-slider {
+                height: 300px;
+            }
+
+            .image-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .timer-container {
+                margin-top: 10px;
+            }
+
+            .member-section h2 {
+                font-size: 1.2em;
+            }
+
+            .panel-container {
+                flex-direction: column;
+            }
+
+            .left-panel, .right-panel {
+                width: 100%;
+            }
+
+            .product-grid {
+                flex-direction: column;
+            }
+
+            .product-card {
+                width: 100%;
+            }
+
+            .card-container {
+                flex-direction: column;
+            }
+
+            .card {
+                min-width: 100%;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-column {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .image-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div>
+            Save big this Memorial Day. These offers end soon. <a href="#">Shop Now</a>
+        </div>
+        <div>
+            <a href="#">Lowe's Credit Center</a>
+            <a href="#">Order Status</a>
+            <a href="#">Weekly Ad</a>
+            <a href="#">Lowe's PRO</a>
+            <a href="#">DIY & Ideas</a>
+        </div>
+    </div>
+    <!-- Main Header -->
+    <div class="header-main">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Lowes_Companies_Logo.svg/2560px-Lowes_Companies_Logo.svg.png" alt="Lowe's Logo" style="height: 40px;">
+        </div>
+        <div class="store-finder">
+            <select>
+                <option>Find a Store Near Me</option>
+            </select>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="What can we help you find?">
+        </div>
+        <div class="user-actions">
+            <a href="#"><img src="https://img.icons8.com/ios-filled/20/000000/user.png" alt="Sign In"> Sign In</a>
+            <a href="#"><img src="https://img.icons8.com/ios-filled/20/000000/shopping-cart.png" alt="Cart"> Cart</a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav">
+        <div>
+            <a href="#">Shop ALL</a>
+            <a href="#">Installations</a>
+            <a href="#">Deals</a>
+            <a href="#" class="new">New</a>
+            <a href="#">MyLow</a>
+        </div>
+        <div>
+            <a href="#">Appliances</a>
+            <a href="#">Bathroom</a>
+            <a href="#">Building Supplies</a>
+            <a href="#">Flooring</a>
+            <a href="#">Father's Day</a>
+        </div>
+    </div>
+
+    <!-- Recommended Search -->
+    <div class="recommended">
+        <h3>RECOMMENDED SEARCH FOR YOU <a href="#">MORE SUGGESTIONS FOR YOU</a></h3>
+        <div class="search-tags">
+            <button>Craftsman</button>
+            <button>Craftsman Weed Eater</button>
+            <button>Weed Eater</button>
+            <button>Craftsman Battery</button>
+            <button>Leaf Blower</button>
+            <button>Craftsman Weed Eater Blower Combo</button>
+            <button>Weed Wacker</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Banner Section -->
+        <div class="banner-section">
+            <!-- Left Banner -->
+            <div class="left-banner">
+                <h1>MEMORIAL DAY</h1>
+                <span class="final-day">Final Day</span>
+                <div class="discount">UP TO 30% OFF</div>
+                <p>IN STORE AND ONLINE<br>Offers end 6/4/25.</p>
+                <button>SHOP NOW</button>
+            </div>
+
+            <!-- Right Slider (Images Only) -->
+            <div class="right-slider">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/vj1zr14uts/New%20Folder/hp-major-appliances-final-day-dt.png?updatedAt=1749061274318" alt="Image 1">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/vj1zr14uts/New%20Folder/hp-patio-furniture-dt-v2.png?updatedAt=1749061329422" alt="Image 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/vj1zr14uts/New%20Folder/hp-grills-accessories-dt-v3.webp?updatedAt=1749061130529" alt="Image 3">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/vj1zr14uts/New%20Folder/hp-tools-accessories-dt-v3.webp?updatedAt=1749061192626" alt="Image 4">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/vj1zr14uts/New%20Folder/hp-outdoor-power-equipment-dt-v3.png?updatedAt=1749061427931" alt="Image 5">
+                        </div>
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footer-section">
+            <div class="impact">
+                <div>
+                    <h2>10 MILLION SQ FT OF IMPACT</h2>
+                    <p>We're making a commitment to show up, support and help rebuild and revitalize the communities we serve across the country.</p>
+                    <a href="#">LEARN MORE</a>
+                </div>
+            </div>
+            <div class="satisfaction">
+                <p>No. 1 in Customer Satisfaction Among Home Improvement Retailers*</p>
+                <img src="https://ik.imagekit.io/vj1zr14uts/image.png?updatedAt=1749062888300" alt="Award">
+            </div>
+        </div>
+    </div>
+
+    <!-- Top image above the container -->
+    <img src="https://ik.imagekit.io/vj1zr14uts/lowes/hp-free-gifts-for-dad-shop-all.avif?updatedAt=1749224377984" alt="Header Image" class="header-image">
+
+    <!-- Container with 6 images -->
+    <div class="image-container">
+        <img src="https://ik.imagekit.io/vj1zr14uts/lowes/hp-free-metabo-battery-buy-nailer.avif?updatedAt=1749224422719" alt="Image 1" class="gallery-image">
+        <img src="https://ik.imagekit.io/vj1zr14uts/lowes/hp-get-2-free-craftsman-tools-buy-combo-kit.png?updatedAt=1749224501401" alt="Image 2" class="gallery-image">
+        <img src="https://ik.imagekit.io/vj1zr14uts/lowes/hp-free-kobalt-power-tool-buy-battery-chainsaw0kit.avif?updatedAt=1749224536252" alt="Image 3" class="gallery-image">
+        <img src="https://ik.imagekit.io/vj1zr14uts/lowes/hp-free-craftsman-bare-tool-buy-blower-trimmer-combo-kit.png?updatedAt=1749224658385" alt="Image 4" class="gallery-image">
+        <img src="https://ik.imagekit.io/vj1zr14uts/lowes/hp-free-blackstone-8-peice-kit-buy-28-inch-griddle.avif?updatedAt=1749224812414" alt="Image 5" class="gallery-image">
+        <img src="https://ik.imagekit.io/vj1zr14uts/lowes/hp-free-craftsman-outdoor-power-tool-buy-mower.png?updatedAt=1749224864837" alt="Image 6" class="gallery-image">
+    </div>
+
+    <!-- Exclusive Member Section -->
+    <div class="member-section">
+        <div class="header-content">
+            <h2>EXCLUSIVE MEMBER ONLY ACCESS ENDS IN...</h2>
+            <div class="timer-container">
+                <div class="timer-labels" id="timer-labels">Hours Minutes Seconds</div>
+                <div class="timer" id="countdown">05:24:59</div>
+            </div>
+        </div>
+        <img src="https://ik.imagekit.io/vj1zr14uts/lowes/hp-exclusive-early-access-halloween-haunted-mansion.avif?updatedAt=1749226432624" alt="Halloween-themed section with subtext and button" class="section-image">
+    </div>
+
+    <!-- Left/Right Panel Section -->
+    <div class="panel-container">
+        <div class="left-panel">
+            <div class="tabs">
+                <span class="active">Personal</span>
+                <span>Business</span>
+            </div>
+            <div class="logo">
+                <img src="https://ik.imagekit.io/vj1zr14uts/lowes/Desktop-MLR-L-XXL-ReturningAndNew.png?updatedAt=1749227570705" alt="My Lowe's Rewards">
+            </div>
+            <h2>Shop. Earn. Save.</h2>
+            <p style="text-align: center;">Account benefits now include:</p>
+            <ul>
+                <li>Points on every eligible dollar.</li>
+                <li>Members-only free gifts and offers.</li>
+                <li>Free Standard Shipping starting with Silver Key Status.</li>
+                <li>Track in-store and online purchase history.</li>
+            </ul>
+            <a href="#" class="button">Sign In or Create Account</a>
+        </div>
+        <div class="right-panel">
+            <div class="section">
+                <h3>Top Picks <a href="#">View All</a></h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="https://ik.imagekit.io/vj1zr14uts/lowes/67381828.avif?updatedAt=1749227956683" alt="DEWALT Battery">
+                        <p>DEWALT, 20-Volt 2-Pack Lithium-Ion 5 Ah Battery and Charger</p>
+                        <div class="stars">★★★★★</div>
+                        <div class="reviews">(314)</div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://ik.imagekit.io/vj1zr14uts/lowes/44341007.webp?updatedAt=1749228122836" alt="EGO String Trimmer">
+                        <p>EGO, POWER+ POWERLOAD with LINE IQ 56-volt 15-in Telescopic Shaft Battery String...</p>
+                        <div class="stars">★★★★★</div>
+                        <div class="reviews">(8.8K)</div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <h3>Deals of The Day <a href="#">View All</a></h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="https://ik.imagekit.io/vj1zr14uts/lowes/70070417.jpeg_size=md?updatedAt=1749228228832" alt="Midea Dishwasher">
+                        <p>Midea, 24-in Top Control Built-in Dishwasher with Third Rack (Stainless Steel) ENERGY...</p>
+                        <div class="stars">★★★★★</div>
+                        <div class="reviews">(71)</div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://ik.imagekit.io/vj1zr14uts/lowes/62601157.avif?updatedAt=1749228296970" alt="CRAFTSMAN Fan">
+                        <p>CRAFTSMAN, 7.5-in 20-Volt 3-Speed Outdoor Red Misting Personal Fan Battery(s) Included.</p>
+                        <div class="stars">★★★★★</div>
+                        <div class="reviews">(136)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card Section -->
+    <div class="card-section">
+        <div class="header">Celebrate Dad with These Father’s Day Finds</div>
+        <div class="container">
+            <div class="card-container">
+                <!-- First Card: 4+ Images -->
+                <div class="card">
+                    <h2>Gifts for Every Dad <a href="#" class="view-all">VIEW ALL</a></h2>
+                    <div class="image-grid">
+                        <div>
+                            <img src="https://ik.imagekit.io/vj1zr14uts/lowes/hp-cards-gifts-for-dad-grill-master.avif?updatedAt=1749229533441" alt="Grill Master">
+                            <p>Grill Master</p>
+                            <a href="#">SHOP NOW</a>
+                        </div>
+                        <div>
+                            <img src="https://ik.imagekit.io/vj1zr14uts/lowes/hp-cards-gifts-for-dad-techie.avif?updatedAt=1749229578471" alt="Techie Dad">
+                            <p>Techie Dad</p>
+                            <a href="#">SHOP NOW</a>
+                        </div>
+                        <div>
+                            <img src="https://ik.imagekit.io/vj1zr14uts/lowes/hp-cards-gifts-for-dad-outdoorsy.avif?updatedAt=1749229777695" alt="Outdoorsy Dad">
+                            <p>Outdoorsy Dad</p>
+                            <a href="#">SHOP NOW</a>
+                        </div>
+                        <div>
+                            <img src="https://ik.imagekit.io/vj1zr14uts/lowes/hp-cards-gifts-for-dad-handyman.webp?updatedAt=1749229777597" alt="Handyman">
+                            <p>Handyman</p>
+                            <a href="#">SHOP NOW</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Second Card: 1 Centered Image -->
+                <div class="card promo">
+                    <h2>Save on Tools <a href="#" class="view-all">VIEW ALL</a></h2>
+                    <div class="promo-image">
+                        <img src="https://ik.imagekit.io/vj1zr14uts/lowes/hp-craftsman-days-card.png?updatedAt=1749229840971" alt="Tools Promo">
+                    </div>
+                    <p>Start your project off right with these tools!</p>
+                    <a href="#">SHOP NOW</a>
+                </div>
+
+                <!-- Third Card: 4+ Images -->
+                <div class="card">
+                    <h2>Father’s Day Essentials <a href="#" class="view-all">VIEW ALL</a></h2>
+                    <div class="image-grid">
+                        <div>
+                            <img src="https://ik.imagekit.io/vj1zr14uts/lowes/hp-cards-fathers-buying-guide-grill.avif?updatedAt=1749230646280" alt="Grill Buying Guide">
+                            <p>Grill Buying Guide</p>
+                            <a href="#">LEARN MORE</a>
+                        </div>
+                        <div>
+                            <img src="https://ik.imagekit.io/vj1zr14uts/lowes/hp-cards-fathers-buying-guide-grill-accessories.webp?updatedAt=1749230789070" alt="Grill Accessories">
+                            <p>Grill Accessories</p>
+                            <a href="#">LEARN MORE</a>
+                        </div>
+                        <div>
+                            <img src="https://ik.imagekit.io/vj1zr14uts/lowes/hp-power-tool-picks.avif?updatedAt=1749230919446" alt="Power Tool Picks">
+                            <p>Power Tool Picks</p>
+                            <a href="#">LEARN MORE</a>
+                        </div>
+                        <div>
+                            <img src="https://ik.imagekit.io/vj1zr14uts/lowes/hp-cards-fathers-buying-guide-patio-under-250.avif?updatedAt=1749231060913" alt="Patio Under $250">
+                            <p>Patio Under $250</p>
+                            <a href="#">LEARN MORE</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div><img src="https://ik.imagekit.io/vj1zr14uts/lowes/image.png?updatedAt=1749232563355"alt="logo"width="95%"></div>
+    <div><img src="https://ik.imagekit.io/vj1zr14uts/lowes/image.png?updatedAt=1749234986539"alt="logo"width="100%"></div>
+    <div><img src="https://ik.imagekit.io/vj1zr14uts/image.png?updatedAt=1749235414783"alt="logo"width="100%"></div>
+    <div><img src="https://ik.imagekit.io/vj1zr14uts/lowes/image.png?updatedAt=1749235353384"alt="logo"width="100%"></div>
+    <div><img src="https://ik.imagekit.io/vj1zr14uts/lowes/image.png?updatedAt=1749235576084"alt="logo"width="100%"></div>
+    <div><img src="https://ik.imagekit.io/vj1zr14uts/image.png?updatedAt=1749235677796"alt="logo"width="100%"></div>
+    
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>ABOUT LOWE'S</h4>
+                <a href="#">Who We Are</a>
+                <a href="#">Careers</a>
+                <a href="#">Our Responsibilities</a>
+                <a href="#">Investors</a>
+                <a href="#">Newsroom</a>
+                <a href="#">Lowe's Suppliers</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Lowe's Creators</a>
+                <a href="#">Lowe's Brands</a>
+                <a href="#">Lowe's Marketplace</a>
+                <a href="#">Lowe's Rental</a>
+            </div>
+            <div class="footer-column">
+                <h4>STORES & SERVICES</h4>
+                <a href="#">Find a Store</a>
+                <a href="#">Store Directory</a>
+                <a href="#">Brand Directory</a>
+                <a href="#">Store Services</a>
+                <a href="#">Subscriptions</a>
+                <a href="#">DIY Workshops</a>
+                <a href="#">MyLowe's Rewards Program</a>
+                <a href="#">Resources for PROs</a>
+                <a href="#">MyLowe's PRO Rewards Program</a>
+                <a href="#">Site Directory</a>
+                <a href="#">Best Selling</a>
+            </div>
+            <div class="footer-column">
+                <h4>CUSTOMER SERVICE</h4>
+                <a href="#">FAQ/Contact Us</a>
+                <a href="#">Rebates</a>
+                <a href="#">Returns & Exchanges</a>
+                <a href="#">Pickup, Shipping & Delivery</a>
+                <a href="#">Special Orders</a>
+                <a href="#">Recalls & Product Safety</a>
+                <a href="#">Protection Plans</a>
+                <a href="#">Military Discount</a>
+                <a href="#">Coupons</a>
+            </div>
+            <div class="footer-column">
+                <h4>CONNECT WITH US</h4>
+                <div class="social-icons">
+                    <a href="#"><img src="https://img.icons8.com/ios-filled/20/ffffff/facebook-new.png" alt="Facebook"></a>
+                    <a href="#"><img src="https://img.icons8.com/ios-filled/20/ffffff/twitter.png" alt="Twitter"></a>
+                    <a href="#"><img src="https://img.icons8.com/ios-filled/20/ffffff/pinterest.png" alt="Pinterest"></a>
+                    <a href="#"><img src="https://img.icons8.com/ios-filled/20/ffffff/instagram-new.png" alt="Instagram"></a>
+                    <a href="#"><img src="https://img.icons8.com/ios-filled/20/ffffff/youtube-play.png" alt="YouTube"></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>PRIVACY & USE</h4>
+                <a href="#">Terms</a>
+                <a href="#">Privacy Statement</a>
+                <a href="#">Interest-Based Ads</a>
+                <a href="#">Your CA Privacy Rights</a>
+                <a href="#">Do Not Sell/Share My Personal Information</a>
+                <a href="#">Limit the Use of My Sensitive Personal Information</a>
+                <a href="#">Notice of Financial Incentive/Loyalty Programs</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Lowe's. All rights reserved. Lowe's and the Gable Mansard Design are registered trademarks of LF, LLC.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Dynamic Countdown Timer -->
+    <script>
+        let time = 5 * 3600 + 24 * 60 + 59;
+
+        function updateCountdown() {
+            if (time <= 0) {
+                document.getElementById('countdown').textContent = '00:00:00';
+                document.getElementById('timer-labels').textContent = 'Hours Minutes Seconds';
+                return;
+            }
+
+            const hours = Math.floor(time / 3600);
+            const minutes = Math.floor((time % 3600) / 60);
+            const seconds = time % 60;
+
+            const formattedTime = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+            document.getElementById('countdown').textContent = formattedTime;
+            document.getElementById('timer-labels').textContent = 'Hours Minutes Seconds';
+
+            time--;
+
+            setTimeout(updateCountdown, 1000);
+        }
+
+        updateCountdown();
+    </script>
+
+    <!-- Swiper.js Script -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    </script>
+</body>
+</html>
